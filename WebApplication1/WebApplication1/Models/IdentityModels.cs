@@ -20,11 +20,16 @@ namespace WebApplication1.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Flat> Letters { get; set; }
+
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection", false)
         {
         }
 
+        private static ApplicationDbContext _instance;
+
+        public static ApplicationDbContext Instance => _instance ?? (_instance = Create());
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
