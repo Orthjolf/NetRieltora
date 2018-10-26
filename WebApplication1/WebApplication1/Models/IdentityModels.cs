@@ -14,8 +14,19 @@ namespace WebApplication1.Models
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Здесь добавьте утверждения пользователя
+            
+            
+            userIdentity.AddClaim(new Claim("FirstName", FirstName));
+            userIdentity.AddClaim(new Claim("LastName", LastName));
+            userIdentity.AddClaim(new Claim("LastName", LastName));
+
             return userIdentity;
         }
+        public string FirstName { get; set; }
+        
+        public string LastName { get; set; }
+        public bool IsLandLord { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
