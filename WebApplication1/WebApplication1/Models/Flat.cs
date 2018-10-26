@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using WebApplication1.DataProvider;
 
 namespace WebApplication1.Models
 {
     public class Flat : Entity
     {
+        public static Repository<Flat> Repository => new Repository<Flat>();
+        
         /// <summary>
         /// Кол-во комнат
         /// </summary>
